@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('body-parser')
 require('dotenv').config()
-// const jwt = require('jsonwebtoken')
 
 const bookRoute = require('./routes/booksRoute')
 const authRoute = require('./routes/authRoute')
