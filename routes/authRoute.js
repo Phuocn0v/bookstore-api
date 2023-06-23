@@ -6,8 +6,10 @@ const jwt = require('jsonwebtoken')
 router.post('/login', (req, res) => {
   const { usernameOrEmail, password } = req.body
   AuthController.checkLogin(usernameOrEmail, password).then((user) => {
-    if (user === null) {
-      res.status(401).json({ msg: 'Username or password is incorrect!' })
+    if (user === -1) {
+      res.status(401).json({ msg: 'Username or email does not existed!' })
+    } else if (user === -2) {
+      res.status(401).json({ msg: 'Password is not match!' })
     } else {
       const accessToken = jwt.sign(
         {
@@ -40,6 +42,12 @@ router.post('/signup', (req, res, next) => {
       })
     }
   })
+})
+
+router.post('/convert-password', (req, res, next) => {
+  const { password } = req.body
+  const hash = AuthController.encrypt(password)
+  res.status(200).json({ hash })
 })
 
 module.exports = router
