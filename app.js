@@ -5,6 +5,7 @@ require('dotenv').config()
 
 const bookRoute = require('./routes/booksRoute')
 const authRoute = require('./routes/authRoute')
+const cartRoute = require('./routes/cartRoute')
 const bodyParser = require('body-parser')
 
 const mongoString = process.env.DATABASE_URL
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({
 
 app.use('/book', bookRoute)
 app.use('/auth', authRoute)
+app.use('/cart', cartRoute)
 
 app.listen(3000, () => {
   console.log(`Server Started at ${3000}`)

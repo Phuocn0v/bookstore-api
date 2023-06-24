@@ -13,7 +13,7 @@ router.post('/login', (req, res) => {
     } else {
       const accessToken = jwt.sign(
         {
-          username: user.username,
+          uid: user._id,
           email: user.email,
           roles: JSON.stringify(user.roles)
         },
@@ -42,12 +42,6 @@ router.post('/signup', (req, res, next) => {
       })
     }
   })
-})
-
-router.post('/convert-password', (req, res, next) => {
-  const { password } = req.body
-  const hash = AuthController.encrypt(password)
-  res.status(200).json({ hash })
 })
 
 module.exports = router

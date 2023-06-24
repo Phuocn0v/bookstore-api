@@ -3,7 +3,6 @@ const Books = db.BookModel
 
 async function getAll () {
   const res = await Books.find()
-  console.log(res)
   return res
 }
 
