@@ -6,8 +6,7 @@ const bookSchema = new Schema({
   author: String,
   rating: Number,
   pages: Number,
-  genres: Array,
-  reviews: Array
+  genres: Array
 })
 
 const Book = mongoose.model('books', bookSchema)

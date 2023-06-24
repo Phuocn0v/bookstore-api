@@ -6,6 +6,12 @@ async function getAll () {
   return res
 }
 
+async function getBookById (id) {
+  const res = await Books.findById(id)
+  return res
+}
+
 module.exports = {
-  getAll
+  getAll,
+  getBookById
 }
