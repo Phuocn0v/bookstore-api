@@ -5,6 +5,12 @@ const jwt = require('jsonwebtoken')
 
 router.post('/login', (req, res) => {
   const { usernameOrEmail, password } = req.body
+
+  if (!usernameOrEmail || !password) {
+    res.status(400).json({ msg: 'Missing username or password' })
+    return
+  }
+
   AuthController.checkLogin(usernameOrEmail, password).then((user) => {
     if (user === -1) {
       res.status(401).json({ msg: 'Username or email does not existed!' })
